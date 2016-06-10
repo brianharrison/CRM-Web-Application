@@ -12,7 +12,12 @@ get '/contacts' do
 
 end
 
-	Contact.create('Mickey', 'Mouse', 'mickey@disney.com', 'mouse')
-	Contact.create('Donald', 'Duck', 'donald@disney.com', 'duck')
-	Contact.create('Wily', "Coyote", 'wily@wb.com', 'coyote')
-	Contact.create('Daffy', 'Duck', 'daffy@wb.com', 'duck')
+get '/contacts/new' do
+
+	erb :new_contact
+end
+
+post '/contacts' do
+	Contact.create(params[:first_name], params[:last_name], params[:email], params[:note])
+	redirect to('/contacts')
+end
